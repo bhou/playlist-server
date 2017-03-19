@@ -286,7 +286,7 @@ Delete a video from playlist
 
 ## Other considerations
 
-The current implementation uses a relational database to store the data model. It is possible to use a non-sql database to store the data and gain performance boost understand the following consideration:
+The current implementation uses a relational database to store the data model. It is possible to use a non-sql database to store the data and gain performance boost under the following consideration:
 
 1. video information is small (only contains title and url)
 2. playlist length usually is small (for a video playlist case, 200 videos in a playlist is already a big and rare video list)
