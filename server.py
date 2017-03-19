@@ -41,6 +41,9 @@ def protected():
 @route('/videos', method=['GET'])
 @protected()
 def get_all_videos():
+    """
+    get all videos
+    """
     try:
     
         videos = Video.findAll()
@@ -56,7 +59,7 @@ def get_all_videos():
 @route('/video', method=['POST'])
 @protected()
 def create_video():
-    """create a new video, it accept an json object as the body:
+    """create a new video, it accepts an json object as the body:
     {
         "title": "the title of the video",
         "thumbnail": "the url of the video"
@@ -101,6 +104,12 @@ def create_video():
 @route('/playlists', method=['GET'])
 @protected()
 def get_all_playlists():
+    """get all playlists, return an array of playlist
+    {
+        "data": [ ... ] 
+    }
+    """
+
     try:
     
         playlists = PlayList.findAll()
@@ -116,6 +125,14 @@ def get_all_playlists():
 @route('/playlist/<id>/videos', method=['GET'])
 @protected()
 def get_playlist_videos(id):
+    """get the list of videos in playlist
+    arguments:
+    id -- the playlist id
+    return {
+        "data": [ video list ]
+    }
+    """
+
     try:
     
         playlist = PlayList.findPlaylistById(id)
@@ -135,6 +152,12 @@ def get_playlist_videos(id):
 @route('/playlist/<id>', method=['GET'])
 @protected()
 def get_playlist_info(id):
+    """get the playlist information
+    arguments:
+    id -- the playlist id
+    return {
+        "data": { playlist object }
+    }"""
     try:
     
         playlist = PlayList.findPlaylistById(id)
@@ -194,7 +217,10 @@ def create_playlist():
 @protected()
 def update_playlist(id):
     """update a playlist, it accept an json object as the body:
-    {
+    arguments:
+    id -- the playlist id
+
+    requset body: {
         "name": "the new playlist name"
     }
     """
@@ -233,6 +259,9 @@ def update_playlist(id):
 @route('/playlist/<id>', method=['DELETE'])
 @protected()
 def delete_playlist(id):
+    """delete a playlist with id
+    arguments:
+    id -- the id of the playlist"""
     try:
         playlist = PlayList.findPlaylistById(id)
 
@@ -256,6 +285,11 @@ def delete_playlist(id):
 @route('/playlist/<playlist_id>/<video_id>', method=['PUT'])
 @protected()
 def add_video_to_playlist(playlist_id, video_id):
+    """add a video to the end of playlist
+    arguments:
+    playlist_id -- the id of the playlist
+    video_id -- the id of the video
+    """
     try:
         playlist = PlayList.findPlaylistById(playlist_id)
 
@@ -283,6 +317,11 @@ def add_video_to_playlist(playlist_id, video_id):
 @route('/playlist/<playlist_id>/<video_id>', method=['DELETE'])
 @protected()
 def delete_video_from_playlist(playlist_id, video_id):
+    """delete a video from the playlist
+    arguments:
+    playlist_id -- the id of the playlist
+    video_id -- the id of the video
+    """
     try:
         playlist = PlayList.findPlaylistById(playlist_id)
 
