@@ -315,6 +315,6 @@ A single db query can get the whole playlist, operations can be done in memory a
 
 #### Drawbacks with this non-sql implementation:
 
-Data inconsistent when original video information is changed. Need to update all video sub documents in all playlists.
+Inconsistent data when original video information is changed. Need to update all video sub documents in all playlists.
 
 A possible solution to this problem could be storing a list of video id in the playlist document, and make a second db query to get the video informations.
