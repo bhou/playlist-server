@@ -4,7 +4,7 @@ import jwt
 
 import config
 
-from bottle import route, run, template, request, response, HTTPError
+from bottle import route, run, template, request, response, HTTPError 
 
 from data_layer.video import Video
 from data_layer.playlist import PlayList
@@ -307,8 +307,6 @@ def delete_video_from_playlist(playlist_id, video_id):
 
     response.headers['Content-Type'] = 'application/json'
     return json.dumps({'data': 'OK'})
-
-
 
 
 run(host='localhost', port=8080)
