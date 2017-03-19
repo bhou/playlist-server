@@ -284,4 +284,37 @@ Delete a video from playlist
 }
 `````
 
+## Other considerations
 
+The current implementation uses a relational database to store the data model. It is possible to use a non-sql database to store the data and gain performance boost understand the following consideration:
+
+1. video information is small (only contains title and url)
+2. playlist length usually is small (for a video playlist case, 200 videos in a playlist is already a big and rare video list)
+
+We can store such playlist in a single json document as following: (for example, mongo DB single document limit is 16M)
+```js
+playlist = {
+  name: 'playlist name',
+  videos: [
+    {
+      id: 'video 1 id',
+      title: 'video 1 title',
+      thumbnail: 'video 1 url'
+    },
+    {
+      id: 'video 2 id',
+      title: 'video 2 title',
+      thumbnail: 'video 2 url'
+    },
+    ...
+  ]
+}
+```
+
+A single db query can get the whole playlist 
+
+#### Drawbacks with this implementation:
+
+Data inconsistent when original video information is changed. Need to update all video sub documents in all playlists.
+
+A possible solution to this problem could be storing a list of video id in the playlist document, and make a second db query to get the video informations.
