@@ -3,6 +3,6 @@ python:
   - "2.7"
 
 # command to install dependencies
-install: "pip install pyjwt"
+install: "pip install pyjwt; python create_db_table.py"
 # command to run tests
 script: python -m unittest discover
