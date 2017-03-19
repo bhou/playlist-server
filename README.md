@@ -2,9 +2,27 @@
 
 [![Build Status](https://travis-ci.org/bhou/playlist-server.svg?branch=master)](https://travis-ci.org/bhou/playlist-server)
 
+# How to run it
+
+First, initiate the data base
+
+```sh
+python create_db_table.py
+```
+
+Run the server
+
+```sh
+python server.py
+```
+
 # Unit Tests
 
 Build and test status see [https://travis-ci.org/bhou/playlist-server](https://travis-ci.org/bhou/playlist-server)
+
+```sh
+python -m unittest discover
+```
 
 # Architecture
 
@@ -272,3 +290,5 @@ Delete a video from playlist
   "data": "OK"
 }
 `````
+
+
