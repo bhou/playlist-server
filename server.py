@@ -38,12 +38,6 @@ def protected():
         return wrapper
     return verify_token
 
-
-@route('/videos/<name>')
-@protected()
-def index(name):
-    return template('<b>Hello {{name}}</b>!', name=name)
-
 @route('/videos', method=['GET'])
 @protected()
 def get_all_videos():
