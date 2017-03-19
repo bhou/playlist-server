@@ -242,13 +242,6 @@ Delete the playlist (it will delete the playlist record in *playlist* table, and
 
 - id: the playlist id
 
-###### Request:
-
-`````json
-{
-  "name": "new playlist name",
-}
-`````
 ###### Response:
 
 `````javascript
