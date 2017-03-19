@@ -311,7 +311,7 @@ playlist = {
 }
 ```
 
-A single db query can get the whole playlist 
+A single db query can get the whole playlist, operations can be done in memory and write back once
 
 #### Drawbacks with this non-sql implementation:
 
