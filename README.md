@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/bhou/playlist-server.svg?branch=master)](https://travis-ci.org/bhou/playlist-server)
 
+# Unit Tests
+
+Build and test status see [https://travis-ci.org/bhou/playlist-server](https://travis-ci.org/bhou/playlist-server)
+
 # Architecture
 
 Three Layers:
@@ -9,6 +13,8 @@ Three Layers:
 - Web Access layer: handles web request (input validation, authentication, authorization, etc)
 - Business layer: provides business related data access API
 - Data connector layer: provides raw data access API, this layer is data-source-aware, we can implement this layer with different data sources and different data source libraries/drivers.
+
+The idea here is to isolate the underlying database implemenation details and provides a business friendly Data access API.
 
 `````text
 --------------------------------------
@@ -30,7 +36,7 @@ A video can be put into mutiple playlists, and a playlists contains multiple vid
 - playlist table: each row in this table represents a playlist
 - playlist_video table: each row in this table represents a video in a playlist
 
-The operation requires that the video order in playlist is persisted when a video is added, deleted, and moved (change order), one possible solution is to keep an order column in the **playlist_video** table, and update the order when a video is added/deleted/moved. With such a data structure, for a playlist with **N** video, the time complexity is **O(N)** (for delete and move).
+The operation requires that the video order in playlist is persisted when a video is added, deleted, and moved (change order), one possible solution is to keep an order column in the **playlist_video** table, and update the order when a video is added/deleted/moved. With such a data structure, for a playlist with **N** video, the time complexity is **O(N)** (worst case for delete and move).
 
 To reduce the time complexity of the playlist operations, a linked list is used in the data base table design:
 
@@ -62,6 +68,20 @@ Each record in this table represents a video in playlist
 | integer, unique id | integer, the playlist id | integer, the id video id | integer, the id of the previous video |
 
 # Rest API
+
+## Security
+
+The server is not protected by HTTPS. 
+
+NOTICE: Always deploy it behind a reverse proxy with HTTPS enabled. You can benefits not only the security but also load balancing, 0 down time deployment, etc. 
+
+## Authentication/Authorization
+
+APIs are protected by token based authentication/authorization system. The distribution of token is not included in this server, please use a Oauth2 or SAML federation server to distribute the token and use the token in all your API requests:
+
+> Authorization: Bearer [your token]
+
+In *server.py*, modify the `protected` function to verify the token (Now the verification is disabled for demo)
 
 ## Response Format Convention
 
