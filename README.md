@@ -313,7 +313,7 @@ playlist = {
 
 A single db query can get the whole playlist 
 
-#### Drawbacks with this implementation:
+#### Drawbacks with this non-sql implementation:
 
 Data inconsistent when original video information is changed. Need to update all video sub documents in all playlists.
 
