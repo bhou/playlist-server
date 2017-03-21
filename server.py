@@ -282,7 +282,7 @@ def delete_playlist(id):
     return json.dumps({'data': 'OK'})
 
 
-@route('/playlist/<playlist_id>/<video_id>', method=['PUT'])
+@route('/playlist/<playlist_id>/video/<video_id>', method=['PUT'])
 @protected()
 def add_video_to_playlist(playlist_id, video_id):
     """add a video to the end of playlist
@@ -314,7 +314,7 @@ def add_video_to_playlist(playlist_id, video_id):
     response.headers['Content-Type'] = 'application/json'
     return json.dumps({'data': 'OK'})
 
-@route('/playlist/<playlist_id>/<video_id>', method=['DELETE'])
+@route('/playlist/<playlist_id>/video/<video_id>', method=['DELETE'])
 @protected()
 def delete_video_from_playlist(playlist_id, video_id):
     """delete a video from the playlist

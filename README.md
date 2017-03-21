@@ -252,7 +252,7 @@ Delete the playlist (it will delete the playlist record in *playlist* table, and
 
 
 
-#### PUT /playlist/:playlist_id/:video_id
+#### PUT /playlist/:playlist_id/video/:video_id
 
 Add a video in playlist
 
@@ -269,7 +269,7 @@ Add a video in playlist
 
 
 
-#### DELETE /playlist/:playlist_id/:video_id
+#### DELETE /playlist/:playlist_id/video/:video_id
 
 Delete a video from playlist
 
